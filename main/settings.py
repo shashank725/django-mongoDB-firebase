@@ -48,12 +48,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'app.apps.AppConfig'  
+    'app.apps.AppConfig',
+    'rest_framework',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "app.middleware.FirebaseAuthenticationMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -91,6 +95,7 @@ DATABASES = {
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': env('ENGINE'),
         'NAME': env('NAME'),
+        # 'ENFORCE_SCHEMA': False,
         'CLIENT': {
            'host': MONGO_DB_URL,
         }
@@ -141,3 +146,7 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+
+
+CORS_ALLOW_ALL_ORIGINS=True
